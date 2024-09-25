@@ -1,0 +1,22 @@
+###
+#create GET request in bookshop service document
+GET http://localhost:4004/odata/v4/book-shop/
+
+###
+#create GET request in bookshop metadata
+GET http://localhost:4004/odata/v4/book-shop/$metadata
+
+###
+#create GET request in book service
+GET http://localhost:4004/odata/v4/book-shop/Book
+
+###
+#create POST request in book service
+POST http://localhost:4004/odata/v4/book-shop/Book
+Content-Type: application/json
+
+{
+    "ID": 1,
+    "title": "Book #01",
+    "stock": 0
+}
