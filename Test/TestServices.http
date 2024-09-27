@@ -1,6 +1,7 @@
 #Arquivo para realizar testes no serviço OData
 
 @baseUrl = http://localhost:4004
+@baseUrlComplete = http://localhost:4004/odata/v4
 
 #Importante: Quando os dados não estiverem persistidos no DB (litesql) reiniciar o serviço na porta 
 
@@ -9,8 +10,17 @@
 GET {{baseUrl}}/odata/v4/book-shop/
 
 ###
+#create GET request in bookshop service document with complete baseURL
+GET {{baseUrlComplete}}/book-shop/
+
+
+###
 #create GET request in bookshop metadata
 GET {{baseUrl}}/odata/v4/book-shop/$metadata
+
+###
+#create GET request in bookshop metadata with complete baseURL
+GET {{baseUrlComplete}}/book-shop/$metadata
 
 ###
 #create GET request in book service (query)
