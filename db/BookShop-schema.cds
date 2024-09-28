@@ -5,7 +5,8 @@ using {
 } from '@sap/cds/common';
 
 using {
-    com.bookshop.types.NoOfBooks
+    com.bookshop.types.NoOfBooks,
+    com.bookshop.types.Price
 } from './BookShop-types';
 
 namespace com.bookshop;
@@ -15,7 +16,7 @@ entity Books : managed, cuid {
 
     // key ID    : Integer;
         title : String @mandatory;
-        price : Decimal(10, 2) @mandatory;
+        price : Price @mandatory;
         stock : NoOfBooks default 0;
 }
 
