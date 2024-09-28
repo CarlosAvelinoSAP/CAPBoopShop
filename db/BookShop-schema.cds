@@ -6,7 +6,8 @@ using {
 
 using {
     com.bookshop.types.NoOfBooks,
-    com.bookshop.types.Price
+    com.bookshop.types.Price,
+    com.bookshop.types.Genre
 } from './BookShop-types';
 
 namespace com.bookshop;
@@ -18,6 +19,7 @@ entity Books : managed, cuid {
         title : String @mandatory;
         price : Price @mandatory;
         stock : NoOfBooks default 0;
+        genre : Genre;
 }
 
 define entity Authors : cuid {
