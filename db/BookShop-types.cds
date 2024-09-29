@@ -19,3 +19,8 @@ define type Genre : Integer enum {
     non_fiction = 2;
 };
 
+//Book´s sex string type
+define type Sex : String enum {
+    Male   = 'M';
+    Female = 'F';
+}

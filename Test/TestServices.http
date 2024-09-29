@@ -19,22 +19,27 @@ GET {{baseUrlComplete}}/book-shop/
 GET {{baseUrl}}/odata/v4/book-shop/$metadata
 
 ###
+#create GET request in bookshop metadata in json format
+GET {{baseUrl}}/odata/v4/book-shop/$metadata?$format=json
+
+
+###
 #create GET request in bookshop metadata with complete baseURL
 GET {{baseUrlComplete}}/book-shop/$metadata
 
 ###
 #create GET request in book service (query)
-GET {{baseUrl}}/odata/v4/book-shop/Book
+GET {{baseUrl}}/odata/v4/book-shop/Books
 
 ###
 #create GET request in book service (read)
-GET {{baseUrl}}/odata/v4/book-shop/Book
+GET {{baseUrl}}/odata/v4/book-shop/Books
 # HTTP/1.1 200 OK
 # HTTP/1.1 404 Not Found
 
 ###
 #create GET request in book service (read) with key
-GET {{baseUrl}}/odata/v4/book-shop/Book(97aebe9f-bfc9-4f87-9216-9591c89abe4b)
+GET {{baseUrl}}/odata/v4/book-shop/Books(97aebe9f-bfc9-4f87-9216-9591c89abe4b)
 # HTTP/1.1 200 OK
 # HTTP/1.1 404 Not Found
 
