@@ -11,6 +11,7 @@ using {
     com.bookshop.types.Gender
 } from './BookShop-types';
 
+//namespace com.bookshop
 namespace com.bookshop;
 
 
@@ -36,3 +37,4 @@ define entity Authors : cuid {
 }
 
 //define type NoOfBooks : Integer;
+
