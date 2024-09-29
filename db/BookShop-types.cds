@@ -20,7 +20,7 @@ define type Genre : Integer enum {
 };
 
 //Book´s sex string type
-define type Sex : String enum {
+define type Gender : String(1) enum {
     Male   = 'M';
     Female = 'F';
 }
