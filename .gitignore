@@ -9,6 +9,9 @@ gen/
 node_modules/
 target/
 
+# SQL Compiled Model
+db/BookShop-SQL
+
 # Web IDE, App Studio
 .che/
 .gen/

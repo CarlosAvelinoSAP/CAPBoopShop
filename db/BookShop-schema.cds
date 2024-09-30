@@ -20,7 +20,8 @@ entity Books : managed, cuid {
     // key ID    : Integer;
         title : String @mandatory;
         price : Price @mandatory;
-        authors : Association to many Authors;
+        authors : Association to many Authors
+                    on authors.ID = authors.ID;
         stock : NoOfBooks default 0;
         genre : Genre;
         publCountry : String(3);

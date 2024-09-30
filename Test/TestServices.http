@@ -13,6 +13,9 @@ GET {{baseUrl}}admin/
 #create GET request in bookshop service document with complete baseURL
 GET {{baseUrlComplete}}admin/
 
+###
+#create GET request in bookshop service document with complete baseURL JSon Format
+GET {{baseUrlComplete}}admin?$format=json
 
 ###
 #create GET request in bookshop metadata
