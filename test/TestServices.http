@@ -1,0 +1,81 @@
+#Arquivo para realizar testes no serviço OData
+
+@baseUrl = http://localhost:4004/
+@baseUrlComplete = http://localhost:4004/
+
+#Importante: Quando os dados não estiverem persistidos no DB (litesql) reiniciar o serviço na porta 
+
+###
+#create GET request in bookshop service document
+GET {{baseUrl}}admin/
+
+###
+#create GET request in bookshop service document with complete baseURL
+GET {{baseUrlComplete}}admin/
+
+###
+#create GET request in bookshop service document with complete baseURL JSon Format
+GET {{baseUrlComplete}}admin?$format=json
+
+###
+#create GET request in bookshop metadata
+GET {{baseUrl}}admin/$metadata
+
+###
+#create GET request in bookshop metadata in json format
+GET {{baseUrl}}admin/$metadata?$format=json
+
+
+###
+#create GET request in bookshop metadata with complete baseURL
+GET {{baseUrlComplete}}admin/$metadata
+
+###
+#create GET request in book service (query)
+GET {{baseUrl}}admin/Books
+
+###
+#create GET request in book service (read)
+GET {{baseUrl}}admin/Books
+# HTTP/1.1 200 OK
+# HTTP/1.1 404 Not Found
+
+###
+#create GET request in book service (read) with key
+GET {{baseUrl}}admin/Books(97aebe9f-bfc9-4f87-9216-9591c89abe4b)
+# HTTP/1.1 200 OK
+# HTTP/1.1 404 Not Found
+
+###
+#create POST request in book service
+POST {{baseUrl}}admin/Books
+Content-Type: application/json
+
+{    
+    "title": "Book #01",
+    "price_amount": 10.00,
+    "price_Currency_code": "BRL",
+    "genre" : 1
+
+}
+#HTTP/1.1 201 Created
+#HTTP/1.1 400 Bad Request Quando a chave já existe ou quando uma propriedade obrigatório não é enviado
+# {
+#   "error": {
+#     "message": "Value is required",
+#     "target": "title",
+#     "code": "400",
+#     "@Common.numericSeverity": 4
+#   }
+# }
+
+###
+#create POST request in book service
+POST {{baseUrl}}/odata/v4/book-shop/Book
+Content-Type: application/json
+
+{
+    
+}
+#HTTP/1.1 201 Created
+#HTTP/1.1 400 Bad Request
