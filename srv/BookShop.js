@@ -3,9 +3,20 @@ const cds = require('@sap/cds');
 class BookShopService extends cds.ApplicationService {
 
   init() {
-      const { Books } = this.entities;
-      
+       this.after('READ', 'Books', books => {
+        for( let book of books ) {
+          if (book.stock < 10 ) book.title += ' ---Deconto de 10%!';
+        }
+      });
+      this.before('CREATE', 'Books', req => {
+        console.log('Teste');
+        const price = req.data.price;
+        if ( price == null ) {
+          req.reject( 400, 'Por favor, informar o preço!'); 
+        }
+      }) 
 
+      //const { Books } = this.entities;
       //this.before('READ', Books, this.funcTitleDesc);
       //this.before('READ', Books, this.validaPrice );
       // Validate the life data entered for an author
