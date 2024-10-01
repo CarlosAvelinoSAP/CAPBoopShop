@@ -42,7 +42,7 @@ GET {{baseUrl}}admin/Books
 
 ###
 #create GET request in book service (read) with key
-GET {{baseUrl}}admin/Books(97aebe9f-bfc9-4f87-9216-9591c89abe4b)
+GET {{baseUrl}}admin/Books(1ec87879-8cf0-4039-bf0f-764ea03b90eb)
 # HTTP/1.1 200 OK
 # HTTP/1.1 404 Not Found
 
