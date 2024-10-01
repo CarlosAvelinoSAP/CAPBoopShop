@@ -8,10 +8,10 @@ class BookShopService extends cds.ApplicationService {
           if (book.stock < 10 ) book.title += ' ---Deconto de 10%!';
         }
       });
-      this.before('CREATE', 'Books', req => {
-        console.log('Teste');
-        const price = req.data.price;
-        if ( price == null ) {
+      this.before('CREATE', 'Books', req => {        
+        const price_amount = req.data.price_amount;
+        console.log('O valor do preço é ' + price_amount);
+        if ( price_amount == null ) {
           req.reject( 400, 'Por favor, informar o preço!'); 
         }
       }) 
