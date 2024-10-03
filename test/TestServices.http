@@ -43,7 +43,7 @@ GET {{baseUrl}}admin/Books
 
 ###
 #create GET request in book service (read) with key
-GET {{baseUrl}}admin/Books(97aebe9f-bfc9-4f87-9216-9591c89abe4b)
+GET {{baseUrl}}admin/Books(21ffcc80-eff6-45c7-a0f4-a425f9946189)
 # HTTP/1.1 200 OK
 # HTTP/1.1 404 Not Found
 
@@ -53,11 +53,11 @@ POST {{baseUrl}}admin/Books
 Content-Type: application/json
 
 {    
-    "title": "Book #06",
-    //"price_amount": 1.00 ,
+    "title": "Book #08",
+    "price_amount": 8.00 ,
     "price_Currency_code": "BRL",    
-    "genre" : 1
-
+    "genre" : 2,
+    "commonField" : "common2"
 }
 #HTTP/1.1 201 Created
 #HTTP/1.1 400 Bad Request Quando a chave já existe ou quando uma propriedade obrigatório não é enviado

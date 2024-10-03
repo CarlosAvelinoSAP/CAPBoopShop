@@ -15,13 +15,14 @@ using {
 namespace com.bookshop;
 
 
-entity Books : managed, cuid {
+entity Books : managed, cuid, MyLocalAspect {
 
     // key ID    : Integer;
         title : String @mandatory;
         price : Price @mandatory;
-        authors : Association to many Authors
-                    on authors.ID = authors.ID;
+        //authors : Association to many Authors
+        //            on authors.ID = ID;
+        authors : Association to Authors;
         stock : NoOfBooks default 0;
         genre : Genre;
         publCountry : String(3);
@@ -38,4 +39,13 @@ define entity Authors : cuid {
 }
 
 //define type NoOfBooks : Integer;
+extend Authors with {
+    intField : Integer @(baz)
+};
+
+aspect MyLocalAspect {
+    localField : String(3);
+    teste2 : String(1) @cds.on.insert : 'A';
+}
+
 
