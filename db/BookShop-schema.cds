@@ -25,21 +25,21 @@ entity Books : managed, cuid, MyLocalAspect {
         price : Price @mandatory;
         //authors : Association to many Authors
         //            on authors.ID = ID;
-        authors : Association to Authors;
+        authors : Association to Authors @mandatory @assert.target;
         stock : NoOfBooks default 0;
-        genre : Genre;
+        genre : Genre @assert.range : true;
         publCountry : Country;
         isHandCover : Boolean;
 }
 
 define entity Authors : cuid, MyLocalAspect {
-    name: String;
-    gender : Gender;
+    name: String @mandatory;
+    gender : Gender @assert.range : true;
     books : Association to many Books
                 on books.authors = $self;
     dateOfBirth: Date;
     dateOfDeath: Date;
-    epoch : Association to Epochs;
+    epoch : Association to Epochs @assert.target;
 }
 
 // Code list is used as a value help list for frontend

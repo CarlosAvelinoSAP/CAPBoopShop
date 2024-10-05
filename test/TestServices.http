@@ -79,8 +79,8 @@ POST {{baseUrl}}{{complementUrl}}Authors
 Content-Type: application/json
 
 {    
-    "name" : "Teste2",
-    "gender" : "F",
+    "name" : "Teste4",
+    "gender" : "M",
     "epoch_ID" : 110 
 }
  
@@ -96,6 +96,20 @@ GET {{baseUrl}}{{complementUrl}}Currencies
 ###
 #create a GET request in the Currency entity set
 GET {{baseUrl}}{{complementUrl}}Countries
+
+###
+#create POST request in book service
+POST {{baseUrl}}admin/Books
+Content-Type: application/json
+
+{    
+    "title": "Book #09",
+    "price_amount": 10.00 ,
+    "price_Currency_code": "BRL",    
+    "genre" : 1,
+    "authors_ID" : "60a4ab0a-cd31-44c9-b054-57a22a07c3e9",
+    "commonField" : "common2"
+}
 
 ###
 #create POST request in book service
