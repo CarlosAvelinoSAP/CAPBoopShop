@@ -4,11 +4,17 @@
 @baseUrlComplete = http://localhost:4004/
 @complementUrl = admin/
 
+@completeUrl = http://localhost:4004/admin
+
 #Importante: Quando os dados não estiverem persistidos no DB (litesql) reiniciar o serviço na porta 
 
 ###
 #create GET request in bookshop service document
 GET {{baseUrl}}{{complementUrl}}
+
+###
+#create GET request in bookshop service document using complete path
+GET {{completeUrl}}
 
 ###
 #create GET request in bookshop service document with complete baseURL
@@ -26,7 +32,6 @@ GET {{baseUrl}}{{complementUrl}}$metadata
 #create GET request in bookshop metadata in json format
 GET {{baseUrl}}{{complementUrl}}$metadata?$format=json
 
-
 ###
 #create GET request in bookshop metadata with complete baseURL
 GET {{baseUrlComplete}}{{complementUrl}}$metadata
@@ -43,9 +48,54 @@ GET {{baseUrl}}admin/Books
 
 ###
 #create GET request in book service (read) with key
-GET {{baseUrl}}admin/Books(21ffcc80-eff6-45c7-a0f4-a425f9946189)
+GET {{baseUrl}}admin/Books(622fe295-f41a-4c72-a837-e50886d25725)
 # HTTP/1.1 200 OK
 # HTTP/1.1 404 Not Found
+
+###
+#create GET request in book service (read) with locale (text)
+GET {{baseUrl}}admin/Books?sap-locale=en
+
+###
+#create GET request in books entity in booksShop service with
+GET {{baseUrl}}{{complementUrl}}Books
+ Accept-Language: de
+
+###
+#create GET request in Authors entity in booksShop service with
+GET {{baseUrl}}{{complementUrl}}Authors
+ 
+###
+#create GET request in Epochs entity in booksShop service with
+GET {{baseUrl}}{{complementUrl}}Epochs
+
+###
+#create GET request in Epochs entity in booksShop service with
+GET {{baseUrl}}{{complementUrl}}Authors(254734af-b4a7-462d-8dcf-90714957f166)
+
+### 
+#create POST request in author service
+POST {{baseUrl}}{{complementUrl}}Authors
+Content-Type: application/json
+
+{    
+    "name" : "Teste2",
+    "gender" : "F",
+    "epoch_ID" : 110 
+}
+ 
+
+###
+#create a GET request in the Epochs entity set
+GET {{baseUrl}}{{complementUrl}}Epochs 
+
+###
+#create a GET request in the Currency entity set
+GET {{baseUrl}}{{complementUrl}}Currencies
+
+###
+#create a GET request in the Currency entity set
+GET {{baseUrl}}{{complementUrl}}Countries
 
 ###
 #create POST request in book service
