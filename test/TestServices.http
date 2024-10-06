@@ -71,7 +71,7 @@ GET {{baseUrl}}{{complementUrl}}Epochs
 
 ###
 #create GET request in Epochs entity in booksShop service with
-GET {{baseUrl}}{{complementUrl}}Authors(254734af-b4a7-462d-8dcf-90714957f166)
+GET {{baseUrl}}{{complementUrl}}Authors(001199da-6131-4c4a-9ef4-7b5c295af6c2)
 
 ### 
 #create POST request in author service
@@ -83,7 +83,52 @@ Content-Type: application/json
     "gender" : "M",
     "epoch_ID" : 110 
 }
- 
+
+#Optimist DB Lock thought concurrent transactions
+###create PUT request to update author
+PUT  {{baseUrl}}{{complementUrl}}Authors(001199da-6131-4c4a-9ef4-7b5c295af6c2)
+If-Match: W/"2024-10-06T23:13:47.158Z"
+Content-type: application/json 
+
+{
+    "name" : "Updated name again"
+}
+
+
+###
+#Create a new author
+# @name CreateNewAuthor
+POST {{baseUrl}}{{complementUrl}}Authors  
+Content-Type: application/json
+
+{    
+    "name" : "Teste7",
+    "gender" : "M",
+    "epoch_ID" : 110 
+}
+
+###
+@authorID = {{CreateNewAuthor.response.body.$.ID}}
+
+###
+#create GET request in Authors entity in booksShop service with
+GET {{baseUrl}}{{complementUrl}}Authors({{authorID}})
+
+###
+#Get Etag from autor
+@Etag1 = {{CreateNewAuthor.response.headers.Etag}}
+
+
+#Optimist DB Lock thought concurrent transactions
+###create PUT request to update author
+PUT  {{baseUrl}}{{complementUrl}}Authors({{authorID}})
+If-Match: {{Etag1}}
+Content-type: application/json 
+
+{
+    "name" : "Updated name again Teste7"
+}
+
 
 ###
 #create a GET request in the Epochs entity set

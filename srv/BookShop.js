@@ -15,6 +15,9 @@ class BookShopService extends cds.ApplicationService {
           req.reject( 400, 'Por favor, informar o preço!'); 
         }
       }) 
+      this.before('UPDATE', 'Authors', req => {
+        console.log('Ok passou por aqui!')
+      });
 
       //const { Books } = this.entities;
       //this.before('READ', Books, this.funcTitleDesc);

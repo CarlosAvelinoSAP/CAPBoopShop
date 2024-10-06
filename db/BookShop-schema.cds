@@ -32,7 +32,7 @@ entity Books : managed, cuid, MyLocalAspect {
         isHandCover : Boolean;
 }
 
-define entity Authors : cuid, MyLocalAspect {
+define entity Authors : cuid, managed, MyLocalAspect {
     name: String @mandatory;
     gender : Gender @assert.range : true;
     books : Association to many Books
@@ -59,4 +59,11 @@ aspect MyLocalAspect {
     teste2 : String(1) @cds.on.insert : 'A';
 }
 
+annotate Books with {
+    modifiedAt @odata.etag //entity tags for optimist db lock
+};
+
+annotate Authors with {
+    modifiedAt @odata.etag //entity tags for optimist db lock
+} ;
 
