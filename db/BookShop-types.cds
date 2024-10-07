@@ -10,7 +10,7 @@ define type NoOfBooks : Integer;
 //Book´s price per unit type
 define type Price {
     amount : Decimal(10,2);
-    Currency : Currency
+    currency : Currency
 } 
 
 //Book´s genre numeric type

@@ -102,7 +102,7 @@ POST {{baseUrl}}{{complementUrl}}Authors
 Content-Type: application/json
 
 {    
-    "name" : "Teste7",
+    "name" : "TesteUpdateWithEtags",
     "gender" : "M",
     "epoch_ID" : 110 
 }
@@ -129,6 +129,24 @@ Content-type: application/json
     "name" : "Updated name again Teste7"
 }
 
+###
+#create GET request in Authors entity in booksShop service with
+GET {{baseUrl}}{{complementUrl}}Authors({{authorID}})
+
+###
+#Get Etag from autor
+@Etag2 = {{CreateNewAuthor.response.headers.Etag}}
+
+
+#Optimist DB Lock thought concurrent transactions
+###create PUT request to update author
+PUT  {{baseUrl}}{{complementUrl}}Authors({{authorID}})
+If-Match: {{Etag2}}
+Content-type: application/json 
+
+{
+    "name" : "Updated name again Etag2"
+}
 
 ###
 #create a GET request in the Epochs entity set
@@ -189,3 +207,50 @@ Content-Type: application/json
 }
 #HTTP/1.1 201 Created
 #HTTP/1.1 400 Bad Request
+
+
+# ____________________________ CatalogService
+###
+# get Catalog Service document
+GET {{baseUrl}}cat
+
+###
+# get Catalog Service metadata
+GET {{baseUrl}}cat/$metadata
+
+###
+# get Books entity data
+GET {{baseUrl}}cat/Books
+
+###
+# create an author
+POST {{baseUrl}}{{complementUrl}}Authors  
+Content-Type: application/json
+
+{    
+    "name" : "TesteUpdateWithEtNewAuthor1",
+    "gender" : "M",
+    "epoch_ID" : 110 
+}
+
+###
+@authorID = {{CreateNewAuthor.response.body.$.ID}}
+
+
+###
+# get Authors entity data
+GET {{baseUrl}}cat/Authors({{authorID}})
+
+###
+#create POST request in book service
+POST {{baseUrl}}cat/Books
+Content-Type: application/json
+
+{    
+    "title": "Book #10",
+    "price_amount": 10.00 ,
+    "price_Currency_code": "BRL",    
+    "genre" : 1,
+    "authors_ID" : {authorID},
+    "commonField" : "common2"
+}
