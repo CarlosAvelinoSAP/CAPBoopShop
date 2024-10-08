@@ -251,6 +251,6 @@ Content-Type: application/json
     "price_amount": 10.00 ,
     "price_Currency_code": "BRL",    
     "genre" : 1,
-    "authors_ID" : {authorID},
+    "authors_ID" : {{authorID}},
     "commonField" : "common2"
 }
