@@ -204,7 +204,7 @@ Content-Type: application/json
 
 ###
 #create POST request in book service
-POST {{baseUrl}}/odata/v4/book-shop/Book
+POST {{baseUrl}}{{complementUrl}}Books
 Content-Type: application/json
 
 {
@@ -228,6 +228,14 @@ GET {{baseUrl}}cat/$metadata
 GET {{baseUrl}}cat/Books
 
 ###
+# get Books entity data
+GET {{baseUrl}}cat/Books(9c272f99-6e47-4e5b-a806-7077ebdc6c5b)
+
+###
+# get Books entity data
+GET {{baseUrl}}cat/Authors
+
+###
 # create an author
 POST {{baseUrl}}{{complementUrl}}Authors  
 Content-Type: application/json
@@ -237,16 +245,12 @@ Content-Type: application/json
     "gender" : "M",
     "epoch_ID" : 110,
     "dateOfBirth" : "2024-01-01",
-    "dateOfDeath" : "2023-01-01" 
+    "dateOfDeath" : "2025-01-01" 
 }
 
 ###
 @authorID = {{CreateNewAuthor.response.body.$.ID}}
 
-
-###
-# get Authors entity data
-GET {{baseUrl}}cat/Authors({{authorID}})
 
 ###
 #create POST request in book service
@@ -255,11 +259,50 @@ Content-Type: application/json
 
 {    
     "title": "Book #1",
-    "price_amount": 1.00 ,
-    "price_Currency_code": "BRL",    
-    "genre" : 1,
-    "authors_ID" : "9da8673c-d37a-4909-82fd-7703e5c79b6f",
-    "commonField" : "common2"
+    "authors_ID" : "37ee3694-bfec-4a59-95f5-15af2816dc49",
+    "stock" : 210
+}
+
+
+###
+# create an author
+POST {{baseUrl}}cat/Authors  
+Content-Type: application/json
+
+{    
+    "name" : "TesteUpdateWithEtNewAuthor1",
+    "gender" : "M",
+    "epoch_ID" : 110,
+    "dateOfBirth" : "2024-01-01",
+    "dateOfDeath" : "2025-01-01" 
+}
+
+###
+@authorID2 = {{CreateNewAuthor.response.body.$.ID}}
+
+###
+GET {{baseUrl}}cat/Authors(15f88097-439b-487c-bf90-535e27548e7f)
+
+
+###
+GET {{baseUrl}}cat/Books
+
+###
+# get Authors entity data
+GET {{baseUrl}}cat/Authors({{authorID2}})
+
+###
+#create POST request in book service
+POST {{baseUrl}}cat/Books
+Content-Type: application/json
+
+{    
+    "title": "Book #1",
+    //"price_amount": 1.00 ,
+    //"price_Currency_code": "BRL",    
+    //"genre" : 1,
+    "authors_ID" : "15f88097-439b-487c-bf90-535e27548e7f"
+    //"commonField" : "common2"
 }
 
 ###

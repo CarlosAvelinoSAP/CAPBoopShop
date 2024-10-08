@@ -1,6 +1,6 @@
 using { com.bookshop as db } from '../db/BookShop-schema';
 
-service CatalogService @(path : '/cat') {
+service CatalogService @(path : '/cat', impl:'srv/cat.js') {
 
     entity Books as
          projection on db.Books {
