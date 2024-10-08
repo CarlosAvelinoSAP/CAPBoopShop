@@ -81,7 +81,9 @@ Content-Type: application/json
 {    
     "name" : "Teste4",
     "gender" : "M",
-    "epoch_ID" : 110 
+    "epoch_ID" : 110,
+    "dateOfBirth" : "2024-01-01",
+    "dateOfDeath" : "2022-01-01" 
 }
 
 #Optimist DB Lock thought concurrent transactions
@@ -102,9 +104,11 @@ POST {{baseUrl}}{{complementUrl}}Authors
 Content-Type: application/json
 
 {    
-    "name" : "TesteUpdateWithEtags",
+    "name" : "TesteUpdateWithEtags1",
     "gender" : "M",
-    "epoch_ID" : 110 
+    "epoch_ID" : 110,
+    "dateOfBirth" : "2024-01-01",
+    "dateOfDeath" : "2022-01-01" 
 }
 
 ###
@@ -166,12 +170,13 @@ POST {{baseUrl}}admin/Books
 Content-Type: application/json
 
 {    
-    "title": "Book #09",
-    "price_amount": 10.00 ,
-    "price_Currency_code": "BRL",    
-    "genre" : 1,
-    "authors_ID" : "60a4ab0a-cd31-44c9-b054-57a22a07c3e9",
-    "commonField" : "common2"
+    "title": "Book #13",
+    "price_amount" : 14.00,
+    "price_currency_code" : "BRL",
+    "genre" : 2,
+    "authors_ID" : "987cf222-6793-4532-81f2-160fd295bfc4",
+    "commonField" : "common2",
+    "stock" : 9
 }
 
 ###
@@ -230,7 +235,9 @@ Content-Type: application/json
 {    
     "name" : "TesteUpdateWithEtNewAuthor1",
     "gender" : "M",
-    "epoch_ID" : 110 
+    "epoch_ID" : 110,
+    "dateOfBirth" : "2024-01-01",
+    "dateOfDeath" : "2023-01-01" 
 }
 
 ###
@@ -247,10 +254,15 @@ POST {{baseUrl}}cat/Books
 Content-Type: application/json
 
 {    
-    "title": "Book #10",
-    "price_amount": 10.00 ,
+    "title": "Book #1",
+    "price_amount": 1.00 ,
     "price_Currency_code": "BRL",    
     "genre" : 1,
-    "authors_ID" : {{authorID}},
+    "authors_ID" : "9da8673c-d37a-4909-82fd-7703e5c79b6f",
     "commonField" : "common2"
 }
+
+###
+#create author to test function validateLifeDate
+POST {{baseUrl}}{{complementUrl}}Author
+
