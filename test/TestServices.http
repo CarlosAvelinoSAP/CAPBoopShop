@@ -253,6 +253,9 @@ Content-Type: application/json
 
 
 ###
+GET {{baseUrl}}cat/Authors
+
+###
 #create POST request in book service
 POST {{baseUrl}}cat/Books
 Content-Type: application/json
@@ -281,7 +284,7 @@ Content-Type: application/json
 @authorID2 = {{CreateNewAuthor.response.body.$.ID}}
 
 ###
-GET {{baseUrl}}cat/Authors(15f88097-439b-487c-bf90-535e27548e7f)
+GET {{baseUrl}}cat/Authors(fcddc57a-b0a0-4800-ac70-5e22fdb04002)
 
 
 ###
@@ -301,13 +304,13 @@ Content-Type: application/json
     //"price_amount": 1.00 ,
     //"price_Currency_code": "BRL",    
     //"genre" : 1,
-    "authors_ID" : "b40a72d7-b1a1-47bf-a02e-23caf36d55cd"
+    "authors_ID" : "fcddc57a-b0a0-4800-ac70-5e22fdb04002"
     //"commonField" : "common2"
 }
 
 ###
 #create author to test function validateLifeDate
-POST {{baseUrl}}{{complementUrl}}Author
+POST {{baseUrl}}{{complementUrl}}Authors
 
 //Test action
 # In the following requests the variable baseUrl is used.
@@ -317,6 +320,9 @@ POST {{baseUrl}}{{complementUrl}}Author
 ### ------------------------------------------------------------------------
 # Get Service Metadata Document
 GET {{baseUrl}}cat/$metadata
+
+###
+GET {{baseUrl}}cat/Authors
 
 ### ------------------------------------------------------------------------
 # Retrieve the ID of the book with the title 'Faust'
@@ -331,5 +337,16 @@ Content-Type: application/json
 
 {
   "book": "{{bookID}}",
+  //"book" : "159beb78-fe2d-4f53-8238-7f0a255dfed5",
   "quantity": 2
+}
+
+###
+POST {{baseUrl}}cat/submitOrder
+Content-Type: application/json
+
+{
+  "book": "{{bookID}}",
+  //"book" : "159beb78-fe2d-4f53-8238-7f0a255dfed5",
+  "quantity": 0
 }
