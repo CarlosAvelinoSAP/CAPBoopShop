@@ -27,5 +27,7 @@ service CatalogService @(path : '/cat', impl:'srv/cat.js') {
         modifiedBy
     }
     ;
-
+    action submitOrder(book : db.Books:ID, quantity: Integer) returns {
+        stock : db.Books:stock
+    }
 }

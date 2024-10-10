@@ -297,11 +297,11 @@ POST {{baseUrl}}cat/Books
 Content-Type: application/json
 
 {    
-    "title": "Book #1",
+    "title": "Avelino",
     //"price_amount": 1.00 ,
     //"price_Currency_code": "BRL",    
     //"genre" : 1,
-    "authors_ID" : "15f88097-439b-487c-bf90-535e27548e7f"
+    "authors_ID" : "b40a72d7-b1a1-47bf-a02e-23caf36d55cd"
     //"commonField" : "common2"
 }
 
@@ -309,3 +309,27 @@ Content-Type: application/json
 #create author to test function validateLifeDate
 POST {{baseUrl}}{{complementUrl}}Author
 
+//Test action
+# In the following requests the variable baseUrl is used.
+# Its value is set here.
+//@baseUrl = http://localhost:4004
+
+### ------------------------------------------------------------------------
+# Get Service Metadata Document
+GET {{baseUrl}}cat/$metadata
+
+### ------------------------------------------------------------------------
+# Retrieve the ID of the book with the title 'Faust'
+# Use this ID to call the submitOrder action
+# @name getBookID
+GET {{baseUrl}}cat/Books?$filter=title eq 'Avelino'
+
+###
+@bookID = {{getBookID.response.body.$.value[0].ID}}
+POST {{baseUrl}}cat/submitOrder
+Content-Type: application/json
+
+{
+  "book": "{{bookID}}",
+  "quantity": 2
+}
