@@ -9,8 +9,23 @@ gen/
 node_modules/
 target/
 
-# SQL Compiled Model
+# SQL Compiled Domain Model
 db/BookShop-SQL
+
+# SQL Compile Service Model
+srv/compileBookShopService.SQL
+
+#SQL file related to compiled data model
+compileDataDefinitionModel.sql
+
+# Initial data
+db/data/*
+
+#persistent sqlite db files
+db.*
+
+# SQL from schema
+bookshop-sql.sql
 
 # Web IDE, App Studio
 .che/
@@ -35,3 +50,6 @@ mta_archives/
 
 # @cap-js/cds-typer
 @cds-models
+
+srv/1Cat.1js
+

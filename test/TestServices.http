@@ -300,7 +300,7 @@ POST {{baseUrl}}cat/Books
 Content-Type: application/json
 
 {    
-    "title": "Avelino3",
+    "title": "Avelino4",
     "stock" : 30,
     //"price_amount": 1.00 ,
     //"price_Currency_code": "BRL",    
@@ -360,6 +360,11 @@ Content-Type: application/json
 
 
 ### ------------------------------------------------------------------------
+###
+# Get Service Document
+GET {{baseUrl}}cat
+
+###
 # Get Service Metadata Document
 GET {{baseUrl}}cat/$metadata
 
@@ -369,13 +374,14 @@ GET {{baseUrl}}cat/$metadata
 # Retrieve the ID of the book with the title 'Faust'
 # Use this ID to call the submitOrder action
 # @name getBookID
-GET {{baseUrl}}cat/Books?$filter=title eq 'Avelino3'
+GET {{baseUrl}}cat/Books?$filter=title eq 'Avelino4'
 
 ###
 
 @bookID = {{getBookID.response.body.$.value[0].ID}}
 
 POST {{baseUrl}}cat/submitOrder
+Accept-Language: pt
 Content-Type: application/json
 
 {
@@ -388,6 +394,7 @@ Content-Type: application/json
 ### ------------------------------------------------------------------------
 # Call the submitOrder action with a quantity of 0 -> error
 POST {{baseUrl}}cat/submitOrder
+Accept-Language: pt 
 Content-Type: application/json
 
 {
@@ -400,6 +407,7 @@ Content-Type: application/json
 ### ------------------------------------------------------------------------
 # Call the submitOrder action with a quantity that exceeds stock -> error
 POST {{baseUrl}}cat/submitOrder
+Accept-Language: pt 
 Content-Type: application/json
 
 {
@@ -412,9 +420,38 @@ Content-Type: application/json
 ### ------------------------------------------------------------------------
 # Call the submitOrder action with an invalid book ID -> error
 POST {{baseUrl}}cat/submitOrder
+Accept-Language: pt
 Content-Type: application/json
 
 {
   "book": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
   "quantity": 2
+}
+
+### ------------------------------------------------------------------------
+# Create a new author using the admin service 
+# with the date of death before the date of birth -> error
+# Check the returned error message in German and in English (Accept-Language) 
+POST {{baseUrl}}admin/Authors
+Accept-Language: en   
+Content-Type: application/json
+
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1705-05-09", 
+  "epoch": {"ID": 120}
+}
+
+###
+
+POST {{baseUrl}}admin/Authors
+Accept-Language: de 
+Content-Type: application/json
+
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1705-05-09", 
+  "epoch": {"ID": 120}
 }

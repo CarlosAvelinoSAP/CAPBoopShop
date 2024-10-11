@@ -36,8 +36,9 @@ validateLifeDate(authors) {
   const dead = new Date(dateOfDeath);
   
   if (dead < birth) {
-    authors.reject(400,`The date of death (${dateOfDeath}) is before the date of birth (${dateOfBirth}).`); 
+    //authors.reject(400,`The date of death (${dateOfDeath}) is before the date of birth (${dateOfBirth}).`); 
     //req.reject(400,`The date of death (${dateOfDeath}) is before the date of birth (${dateOfBirth}).`); 
+    authors.reject(401, 'DEATH_BEFORE_BIRTH', [dateOfDeath, dateOfBirth]);
   } 
 
   console.log('Passou pela função!')
