@@ -78,7 +78,7 @@ class CatalogService extends cds.ApplicationService {
         let { stock } = b;
         if (quantity > stock) {
             //return req.error(`${quantity} exceeds stock ${stock} for book with ID ${book}.`);
-            return req.error('ORDER_EXCEEDS_STOCK', [quantity, stock, book]);
+            return req.reject(500,'ORDER_EXCEEDS_STOCK', [quantity, stock, book]);
         }
 
         await UPDATE(Books).where({ ID: book }).with({ stock: { '-=': quantity } });
